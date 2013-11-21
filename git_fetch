@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+	then
+	echo "usage: git_fetch <path>"
+	echo ""
+	echo "  git_fetch will perform git fetch --all on all git repos located at <path>."
+	echo ""
+	exit
+fi
+
+echo "Fetching all git repos.."
+for f in "$@"
+do
+	[ -d $f/.git ] && echo "** Processing $f **" && cd $f  && git fetch --all
+done
